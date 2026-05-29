@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Home, Clock3, BarChart3 } from "lucide-react";
+
+import logo from "@/assets/logo.png";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -16,8 +19,16 @@ export default function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className="font-bold text-lg text-slate-900">
-          KeenKeeper
+        
+        <Link href="/" className="flex items-center">
+          <Image
+            src={logo}
+            alt="KeenKeeper Logo"
+            width={140}
+            height={40}
+            className="object-contain"
+            priority
+          />
         </Link>
 
         <div className="flex items-center gap-2">
