@@ -1,99 +1,38 @@
 import Image from "next/image";
-import Link from "next/link";
-
 import facebook from "@/assets/facebook.png";
-import twitter from "@/assets/twitter.png";
 import instagram from "@/assets/instagram.png";
-// import linkedin from "@/assets/linkedin.png";
+import twitter from "@/assets/twitter.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-10 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-    
-        <div>
-          <h2 className="text-2xl font-bold mb-3">KeenKeeper</h2>
+    <footer className="bg-[#1F5B47] text-white py-16 mt-20">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <h1 className="text-5xl font-bold">
+          KeenKeeper
+        </h1>
 
-          <p className="text-gray-400">
-            Helping you organize and manage projects efficiently.
-          </p>
-        </div>
+      <p className="mt-4 text-sm text-gray-200">
+        Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
+      </p>
+      <h3 className="text-lg font-semibold mt-6">Social Links</h3>
 
-  
-        <div>
-          <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
+      <div className="flex justify-center gap-4 mt-6">
+        <Image src={facebook} alt="" width={30} />
+        <Image src={instagram} alt="" width={30} />
+        <Image src={twitter} alt="" width={30} />
+      </div>
 
-          <ul className="space-y-2 text-gray-400">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-
-            <li>
-              <Link href="/about">About</Link>
-            </li>
-
-            <li>
-              <Link href="/projects">Projects</Link>
-            </li>
-
-            <li>
-              <Link href="/contact">Contact</Link>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
-
-          <div className="flex gap-4">
-            
-            <a href="https://facebook.com" target="_blank">
-              <Image
-                src={facebook}
-                alt="Facebook"
-                width={30}
-                height={30}
-                className="hover:scale-110 transition"
-              />
-            </a>
-
-            <a href="https://twitter.com" target="_blank">
-              <Image
-                src={twitter}
-                alt="Twitter"
-                width={30}
-                height={30}
-                className="hover:scale-110 transition"
-              />
-            </a>
-
-            <a href="https://instagram.com" target="_blank">
-              <Image
-                src={instagram}
-                alt="Instagram"
-                width={30}
-                height={30}
-                className="hover:scale-110 transition"
-              />
-            </a>
-
-            {/* <a href="https://linkedin.com" target="_blank">
-              <Image
-                src={linkedin}
-                alt="LinkedIn"
-                width={30}
-                height={30}
-                className="hover:scale-110 transition"
-              />
-            </a> */}
-
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-300">
+          <p className="text-center sm:text-left">© 2026 KeenKeeper. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a href="#" className="hover:text-white">Privacy Policy</a>
+            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="#" className="hover:text-white">Cookies</a>
           </div>
         </div>
       </div>
-
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} KeenKeeper. All rights reserved.
-      </div>
+    </div>
     </footer>
   );
 }
