@@ -52,8 +52,8 @@ export default function StatsPage() {
             By Interaction Type
           </h2>
 
-          <div className="h-[400px]">
-            <ResponsiveContainer width="100%" height="100%">
+          <div style={{ width: "100%", height: 400 }}>
+            <ResponsiveContainer width="100%" height={400}>
               <PieChart>
 
                 <Pie
