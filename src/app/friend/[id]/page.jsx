@@ -1,7 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState } from "react";
 import friendsData from "@/data/friends.json";
+import { useTimeline } from "@/context/TimelineContext";
+import { toast } from "sonner";
 
 import Image from "next/image";
 
@@ -32,6 +35,33 @@ export default function FriendDetails() {
     overdue: "bg-red-100 text-red-600",
     "almost due": "bg-yellow-100 text-yellow-700",
     "on-track": "bg-green-100 text-green-700",
+  };
+
+  const { addTimelineEntry } = useTimeline();
+  const [activeAction, setActiveAction] = useState(null);
+
+  const handleQuickAction = (type) => {
+    const label =
+      type === "call"
+        ? "Call"
+        : type === "text"
+        ? "Text"
+        : "Video Call";
+    const time = new Date().toLocaleString();
+
+    setActiveAction(type);
+
+    addTimelineEntry({
+      id: `${friend.id}-${type}-${Date.now()}`,
+      friendId: friend.id,
+      friendName: friend.name,
+      type,
+      label,
+      time,
+      message: `${label} with ${friend.name}`,
+    });
+
+    toast.success(`${label} logged to timeline`);
   };
 
   return (
@@ -190,7 +220,15 @@ export default function FriendDetails() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
 
-              <button className="border rounded-lg py-6 hover:bg-gray-50 hover:shadow-md transition duration-300 flex flex-col items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleQuickAction("call")}
+                className={`border rounded-lg py-6 transition duration-300 flex flex-col items-center gap-3 ${
+                  activeAction === "call"
+                    ? "bg-emerald-100 border-emerald-300 text-emerald-900"
+                    : "hover:bg-gray-50 hover:shadow-md"
+                }`}
+              >
 
                 <Image
                   src={callIcon}
@@ -205,7 +243,15 @@ export default function FriendDetails() {
 
               </button>
 
-              <button className="border rounded-lg py-6 hover:bg-gray-50 hover:shadow-md transition duration-300 flex flex-col items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleQuickAction("text")}
+                className={`border rounded-lg py-6 transition duration-300 flex flex-col items-center gap-3 ${
+                  activeAction === "text"
+                    ? "bg-emerald-100 border-emerald-300 text-emerald-900"
+                    : "hover:bg-gray-50 hover:shadow-md"
+                }`}
+              >
 
                 <Image
                   src={textIcon}
@@ -220,7 +266,15 @@ export default function FriendDetails() {
 
               </button>
 
-              <button className="border rounded-lg py-6 hover:bg-gray-50 hover:shadow-md transition duration-300 flex flex-col items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleQuickAction("video")}
+                className={`border rounded-lg py-6 transition duration-300 flex flex-col items-center gap-3 ${
+                  activeAction === "video"
+                    ? "bg-emerald-100 border-emerald-300 text-emerald-900"
+                    : "hover:bg-gray-50 hover:shadow-md"
+                }`}
+              >
 
                 <Image
                   src={videoIcon}

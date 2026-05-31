@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
 import type { ReactNode } from "react";
+import { TimelineProvider } from "@/context/TimelineContext";
 
 export const metadata = {
   title: "KeenKeeper",
@@ -17,18 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-50 text-slate-900">
-        <Navbar />
+        <TimelineProvider>
+          <Navbar />
 
-        <main className="min-h-screen">
-          {children}
-        </main>
+          <main className="min-h-screen">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <Toaster
-          position="top-right"
-          richColors
-        />
+          <Toaster
+            position="top-right"
+            richColors
+          />
+        </TimelineProvider>
       </body>
     </html>
   );
